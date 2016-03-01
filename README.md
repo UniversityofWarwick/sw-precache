@@ -43,6 +43,7 @@ The full documentation is in this README, and the
     - [runtimeCaching [Array&#x27e8;Object&#x27e9;]](#runtimecaching-arrayobject)
     - [staticFileGlobs [Array&#x27e8;String&#x27e9;]](#staticfileglobs-arraystring)
     - [stripPrefix [String]](#stripprefix-string)
+    - [stripPrefixRegex [String]](#stripprefixregex-string)
     - [templateFilePath [String]](#templatefilepath-string)
     - [verbose [boolean]](#verbose-boolean)
 - [Acknowledgements](#acknowledgements)
@@ -413,6 +414,12 @@ from the start of each local file's path in order to get the correct relative
 URL.
 
 _Default_: `''`
+
+#### stripPrefixRegex [String]
+If `stripPrefix` doesn't handle your situation, you can use `stripPrefixRegex`
+to match multiple possible prefixes.
+
+_Default_: falls back to `stripPrefix`
 
 #### templateFilePath [String]
 

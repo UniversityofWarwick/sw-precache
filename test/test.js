@@ -203,6 +203,37 @@ describe('sw-precache core functionality', function() {
     });
   });
 
+  it('should produce different output when stripPrefixRegex matches', function(done) {
+    var config = {
+      logger: NOOP,
+      staticFileGlobs: [
+        'test/data/one/a.txt',
+        'test/data/one/c.txt',
+        'best/data/two/b.txt'
+      ],
+      stripPrefixRegex: '[tb]es?t'
+    };
+
+    var configPrime = {
+      logger: NOOP,
+      staticFileGlobs: [
+        'test/data/one/c.txt',
+        'test/data/two/b.txt',
+        'test/data/one/a.txt'
+      ]
+    };
+
+    generate(config, function(error, reponseString) {
+      assert.ifError(error);
+      console.log(error, reponseString);
+      generate(configPrime, function(error, responseStringPrime) {
+        assert.ifError(error);
+        assert.notStrictEqual(reponseString, responseStringPrime);
+        done();
+      });
+    });
+  });
+
   after(function() {
     fs.unlinkSync(TEMP_FILE);
   });
